@@ -1,3 +1,3 @@
 module.exports = {
-  server: 'https://your.domain.name',
+  server: 'https://wujf.work',
 }

@@ -9,8 +9,10 @@
 	},
 	"compileType": "game",
 	"libVersion": "game",
-	"appid": "replaceWithYourAppId",
-	"projectname": "井字大作战",
+	"appid": "wx13395601f234015e",
+	"projectname": "mgame",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
