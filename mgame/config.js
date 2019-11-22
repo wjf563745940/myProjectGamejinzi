@@ -1,3 +1,4 @@
 module.exports = {
-  server: 'https://wujf.work',
+  // server: 'http://10.10.38.197:2346/',
+  server:  'https://wujf.work/',
 }
