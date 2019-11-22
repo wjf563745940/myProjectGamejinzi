@@ -15,6 +15,31 @@ function serveIndex (req, res) {
     <head>
     <title>微信小游戏入门</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script>
+    function createFunctionWithTimeout(callback, opt_timeout) {
+      var called = false;
+      function fn() {
+          if (!called) {
+              called = true;
+              callback();
+          }
+      }
+      setTimeout(fn, opt_timeout || 1000);
+      return fn;
+  }
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics_debug.js', 'ga');
+  ga('create', 'UA-XXXXX-Y', 'auto');
+  ga('send', 'pageview', {
+    hitCallback: createFunctionWithTimeout(function () {
+        console.log("cllbak")
+    })
+});
+    </script>
     </head>
     <body>
     <header>
@@ -32,13 +57,33 @@ function serveIndex (req, res) {
   `)
   res.end()
 }
+/**
+ * 为域名备案提供一个简单的页面，以放置备案号
+ */
+function serveIndex2 (req, res) {
+  res.write(`
+    http
+  `)
+  res.end()
+}
+var options = {
+  key: fs.readFileSync('./3102811_wujf.work.key'),
+    cert: fs.readFileSync('./3102811_wujf.work.pem'),
+};
+var https=require('https');
+var http=require('http');
+// const app = process.env.NODE_ENV === 'production' ?
+// https.createServer(options, serveIndex):  // 生产环境服务器
+// https.createServer(options,serveIndex2)                      // 本地开发服务器
+// const io = require('socket.io')(app)
+// app.listen(config.port)
 
-const app = process.env.NODE_ENV === 'production' ?
-  require('https').createServer(config.httpsConfig, serveIndex):  // 生产环境服务器
-  require('http').createServer(serveIndex)                      // 本地开发服务器
+
+var app=http.createServer(serveIndex2)
+app.listen(config.port, function () {
+  console.log('Http server listening on port ' + config.port);
+});
 const io = require('socket.io')(app)
-app.listen(config.port)
-
 /**
  * 通过 socket id 获取 socket
  * @param id
