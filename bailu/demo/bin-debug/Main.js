@@ -93,9 +93,34 @@ var Main = (function (_super) {
         // this.runGame().catch(e => {
         //     console.log(e);
         // })
+        this.runZindex();
+    };
+    Main.prototype.runtest = function () {
         var _myGrid = new MyGrid();
         console.log("_myGrid=,", _myGrid);
         this.addChild(_myGrid);
+    };
+    Main.prototype.runZindex = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var container, sky, sky2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadResource()];
+                    case 1:
+                        _a.sent();
+                        container = new egret.Sprite();
+                        container.sortableChildren = true; //注意，一定要设置为true
+                        sky = this.createBitmapByName("bg_jpg");
+                        sky.x = 10;
+                        this.addChild(sky);
+                        sky2 = this.createBitmapByName("bg_jpg");
+                        sky2.x = 30;
+                        this.addChild(sky2);
+                        sky.zIndex = 3;
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Main.prototype.runGame = function () {
         return __awaiter(this, void 0, void 0, function () {

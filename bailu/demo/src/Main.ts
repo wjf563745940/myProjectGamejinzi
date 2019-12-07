@@ -57,12 +57,44 @@ class Main extends egret.DisplayObjectContainer {
         // this.runGame().catch(e => {
         //     console.log(e);
         // })
+        
+        this.runZindex();
+
+
+
+    }
+    private runtest(){
          var _myGrid:MyGrid = new MyGrid();
          console.log("_myGrid=,",_myGrid)
         this.addChild( _myGrid );
+    }
+    private async runZindex(){
+        await this.loadResource()
+        let container = new egret.Sprite();
+        container.sortableChildren = true;//注意，一定要设置为true
+        // this.addChild(container);
+        let sky = this.createBitmapByName("bg_jpg");
+        sky.x=10
+        this.addChild(sky);
 
-
-
+        let sky2 = this.createBitmapByName("bg_jpg");
+        sky2.x=30
+        this.addChild(sky2);
+        sky.zIndex=3
+        // let texture: egret.Texture = RES.getRes('bird_png');
+        // let b1 = new egret.Bitmap();
+        // b1.texture = texture;
+        // b1.x = 100;
+        // this.addChild(b1)
+        // let b2 = new egret.Bitmap();
+        // b2.texture = texture;
+        // b2.x = 270;
+        // this.addChild(b2)
+        // let b3 = new egret.Bitmap();
+        // b3.texture = texture;
+        // b3.x = 440;
+        // this.addChild(b3)
+        // b2.zIndex = 3;//将第二个图片设置到顶部
     }
     private async runGame() {
         await this.loadResource()
