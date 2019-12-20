@@ -1,24 +1,54 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<view class='battle_object'>
+			<view v-for="(item,index) in objects" :key="index">
+				{{item.name}}
+			</view>
+		</view>
+		<view class="progress">
+			<view class="">
+				jindu
+			</view>
+		</view>
+		<view class='skill-con'>
+			<view class="skill-one">
+				<view class="" @tap="collect">
+					collect
+				</view>
+			</view>
+			<view class="skill-one">
+				<view v-for="(item,index) in objects" :key="index" >
+					<view @tap="skillOne(item)">{{item.name}}</view> 
+				</view>
+			</view>
 		</view>
 	</view>
+
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				objects:[{name:'test'}],
+				collectNum:0,
+				canCollect:true
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+			collect(){
+				if(this.canCollect){
+					this.collectNum+=1;
+					this.canCollect=false;
+				}
+			},
+			skillOne(item){
+				console.log(`a ${item.name}`)
+			},
 		}
 	}
 </script>
@@ -31,22 +61,5 @@
 		justify-content: center;
 	}
 
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
 
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
-	}
 </style>
